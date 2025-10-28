@@ -1,9 +1,6 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-    return HttpResponse('<h1>Welcome to RollingLog Catalog<h1>')
-
 def about(request):
-    return HttpResponse('<h1>About RollingLog</h1><p>Your personal rolling paper catalog.</p>')
+    return render(request, 'about.html')
