@@ -22,8 +22,8 @@ class RollingPaper(models.Model):
 
     #Relatioships 
 
-user = models.ForeignKey(User, on_delete=models.CASCADE)
-brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name

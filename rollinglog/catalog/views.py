@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import RollingPaper
 
 # Create your views here.
 def home(request):
@@ -6,6 +7,11 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def paper_detail(request, paper_id):
+    paper = RollingPaper.objects.get(id=paper_id)
+    return render(request, 'papers/details.html', {'paper': paper})
 
 #temporary mock class before we use Django models 
 
@@ -27,6 +33,7 @@ papers = [
     ]
 
 def paper_index(request):
+    papers = RollingPaper.objects.all()
     return render(request, 'paper/index.html', {'papers':papers})
 
         
