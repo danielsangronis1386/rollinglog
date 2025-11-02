@@ -32,6 +32,7 @@ class RollingPaperCreate(CreateView):
 class RollingPaperUpdate(UpdateView):
     model = RollingPaper
     fields = ['size', 'material', 'flavor', 'rating', 'brand']
+    template_name = 'papers/rollingpaper_form.html'
 
 class RollingPaperDelete(DeleteView):
     model = RollingPaper

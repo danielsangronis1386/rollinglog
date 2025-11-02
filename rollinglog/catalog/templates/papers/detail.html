@@ -10,6 +10,8 @@
     <p><strong>Added by:</strong> {{ paper.user.username }}</p>
 
     <a href="{% url 'paper-index' %}" class="back-link">Back to all papers</a>
+    <a href="{% url 'paper-update' paper.id %}">Edit</a> |
+    <a href="{% url 'paper-delete' paper.id %}">Delete</a>
 </section>
 {% endblock %}
 
