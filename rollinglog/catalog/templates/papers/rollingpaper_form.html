@@ -3,7 +3,11 @@
 
 {% block content %}
 <section class="page-header">
-    <h1>Add a Rolling Paper</h1>
+    {% if object %}
+        <h1>Edit Rolling Paper</h1>
+    {% else %}
+    <h1>Add a New Rolling Paper</h1>
+    {% endif %}
 </section>
 
 <form action="" method="post" class="form-container">

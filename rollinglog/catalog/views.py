@@ -37,6 +37,7 @@ class RollingPaperUpdate(UpdateView):
 class RollingPaperDelete(DeleteView):
     model = RollingPaper
     success_url = reverse_lazy('paper-index')
+    template_name = 'papers/rollingpaper_confirm_delete.html'
 
 
 
