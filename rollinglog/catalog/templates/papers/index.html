@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{ % load static %}
+{% load static %}
 
 {% block content %}
 <section class="page-header">
@@ -8,15 +8,18 @@
 
 <section class="card-container">
     {% for paper in papers %}
-       <div class="card">
-        <div class="card-content">
-            <h2 class="card-title">{{ paper.name }}</h2>
-            <p><strong>Brand:</strong> {{ paper.brand }}</p>
-            <p><strong>Size:</strong> {{ paper.size }}</p>
-            <p><strong>Material:</strong> {{ paper.material }}</p>
-            <p><strong>Rating:</strong> {{ paper.rating }}</p>
-       </div>
-    </div>
+       <a href="{% url 'paper-detail' paper.id %}">
+            <div class="card">
+                <div class="card-content">
+                    <h2 class="card-title">{{ paper.name }}</h2>
+                    <p><strong>Brand:</strong> {{ paper.brand.name }}</p>
+                    <p><strong>Size:</strong> {{ paper.size }}</p>
+                    <p><strong>Material:</strong> {{ paper.material }}</p>
+                    <p><strong>Flavor:</strong> {{ paper.flavor }}</p>
+                    <p><strong>Rating:</strong> {{ paper.rating }}</p>
+                </div>
+            </div>
+        </a>
    {% empty %}
     <p>No rolling papers yet. Add your first one!</p>
    {% endfor %}

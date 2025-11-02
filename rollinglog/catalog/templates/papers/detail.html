@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block content %}
+<section class="paper-detail">
+    <h1>{{ paper.name }}</h1>
+    <p><strong>Brand:</strong> {{ paper.brand.name }}</p>
+    <p><strong>Size:</strong> {{ paper.size }}</p>
+    <p><strong>Material:</strong> {{ paper.material }}</p>
+    <p><strong>Flavor:</strong> {{ paper.flavor }}</p>
+    <p><strong>Rating:</strong> {{ paper.rating }}</p>
+    <p><strong>Added by:</strong> {{ paper.user.username }}</p>
+
+    <a href="{% url 'paper-index' %}" class="back-link">Back to all papers</a>
+</section>
+{% endblock %}
+

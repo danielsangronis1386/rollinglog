@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView, DeleteView
 from .models import RollingPaper
+from django.urls import reverse_lazy
 
 # Create your views here.
 def home(request):
@@ -8,32 +11,38 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def paper_index(request):
+    papers = RollingPaper.objects.all()
+    return render(request, 'papers/index.html', {'papers':papers})
+
 
 def paper_detail(request, paper_id):
     paper = RollingPaper.objects.get(id=paper_id)
-    return render(request, 'papers/details.html', {'paper': paper})
+    return render(request, 'papers/detail.html', {'paper': paper})
 
-#temporary mock class before we use Django models 
+class RollingPaperCreate(CreateView):
+    model = RollingPaper
+    fields = ['name', 'size', 'material', 'flavor', 'rating', 'brand']
+    template_name = 'papers/rollingpaper_form.html'
 
-class RollingPaper:
-    def __init__(self, name, brand, size, material, rating):
-        self.name = name
-        self.brand = brand
-        self.size = size
-        self.material = material
-        self.rating = rating
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class RollingPaperUpdate(UpdateView):
+    model = RollingPaper
+    fields = ['size', 'material', 'flavor', 'rating', 'brand']
+
+class RollingPaperDelete(DeleteView):
+    model = RollingPaper
+    success_url = reverse_lazy('paper-index')
+
+
+
+
 
     
-#fake list of papers to render the UI 
-papers = [
-    RollingPaper('Raw Classic', 'RAW', '1 1/4', 'Hemp', 5),
-    RollingPaper('OCB Organic', 'OCB', 'King Size', 'Organic Hemp', 4),
-    RollingPaper('Vibes Ultra Thing', 'Vibes', 'King Size Slim', 'Rice',3),
-    RollingPaper('Elements Rice', 'Elements', 'Single Wide', 'Rice', 4),
-    ]
 
-def paper_index(request):
-    papers = RollingPaper.objects.all()
-    return render(request, 'paper/index.html', {'papers':papers})
+
 
         

@@ -9,10 +9,12 @@
     <header>
         <h1><a href="/">RollingLog</a></h1>
         <nav>
-            <a href="/">Home</a> |
-            <a href="/about">About</a>
-            <a href="/papers">All papers</a>
-            
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'paper-index' %}">All Papers</a></li>
+                <li><a href="{% url 'paper-create' %}">Add Paper</a></li>
+            </ul>
         </nav>
     </header>
 
