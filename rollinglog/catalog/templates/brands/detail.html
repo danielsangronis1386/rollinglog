@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="brand-detail">
+    <h1>{{ brand.name }}</h1>
+    <p><strong>Origin:</strong> {{ brand.origin_country }}</p>
+    <p>{{ brand.description }}</p>
+
+    <h2>Rolling Papers</h2>
+    {% if brand.rollingpaper_set.all %}
+        <ul>
+          {% for paper in brand.rollingpaper_set.all %}
+          <li>
+            <a href="{% url 'paper-detail' paper.id %}">{{ paper.name }}</a>
+            - {{ paper.size }}, {{ paper.material }}, Rating: {{ paper.rating }}
+          </li>
+          {% endfor %}
+        </ul>
+    {% else %}
+        <p>No papers listed fot this brand yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -22,6 +22,16 @@ class RollingPaper(models.Model):
 
     def get_absolute_url(self):
         return reverse('paper-detail', kwargs={'pk': self.id})
+    
+class Review(models.Model):
+    paper = models.ForeignKey(RollingPaper, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
+    comment = models.TextField(max_length=500, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.user.username} for {self.paper.name}"
 
 
     #Relatioships 
