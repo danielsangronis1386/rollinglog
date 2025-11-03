@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
+from django.views.generic import DetailView
 from .models import RollingPaper
+from .models import Brand
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -17,9 +19,10 @@ class RollingPaperList(ListView):
     template_name = 'papers/index.html'
 
 
-def paper_detail(request, paper_id):
-    paper = RollingPaper.objects.get(id=paper_id)
-    return render(request, 'papers/detail.html', {'paper': paper})
+class RollingPaperDetail(DetailView):
+    context_object_name = 'paper'
+    model = RollingPaper
+    template_name = 'papers/detail.html'
 
 class RollingPaperCreate(CreateView):
     model = RollingPaper
@@ -39,6 +42,11 @@ class RollingPaperDelete(DeleteView):
     model = RollingPaper
     success_url = reverse_lazy('paper-index')
     template_name = 'papers/rollingpaper_confirm_delete.html'
+
+class BrandDetail(DeleteView):
+    model = Brand
+    template_name = 'brands/detail.html'
+    context_object_name = 'brand'
 
 
 

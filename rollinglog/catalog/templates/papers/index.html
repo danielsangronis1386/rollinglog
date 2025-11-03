@@ -7,7 +7,7 @@
 </section>
 
 <section class="card-container">
-    {% for paper in papers %}
+    {% for paper in object_list %}
        <a href="{% url 'paper-detail' paper.id %}">
             <div class="card">
                 <div class="card-content">

@@ -21,7 +21,7 @@ class RollingPaper(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse('paper-detail', kwargs={'paper_id': self.id})
+        return reverse('paper-detail', kwargs={'pk': self.id})
 
 
     #Relatioships 
