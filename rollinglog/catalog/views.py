@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic import ListView
 from .models import RollingPaper
 from django.urls import reverse_lazy
 
@@ -11,9 +12,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def paper_index(request):
-    papers = RollingPaper.objects.all()
-    return render(request, 'papers/index.html', {'papers':papers})
+class RollingPaperList(ListView):
+    model = RollingPaper
+    template_name = 'papers/index.html'
 
 
 def paper_detail(request, paper_id):
