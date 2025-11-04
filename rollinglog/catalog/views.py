@@ -4,17 +4,33 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.views.generic import DetailView
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from .models import RollingPaper
 from .models import Brand
 from .models import Review
 from django.urls import reverse_lazy
 
 # Create your views here.
-def home(request):
-    return render(request, 'home.html')
+class Home(LoginView):
+    template_name = 'home.html'
 
 def about(request):
     return render(request, 'about.html')
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('paper-index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form, 'error_message': error_message})
 
 class RollingPaperList(ListView):
     model = RollingPaper
