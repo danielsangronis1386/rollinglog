@@ -15,8 +15,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class Home(LoginView):
-    template_name = 'home.html'
+def home(request):
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -31,7 +31,8 @@ def signup(request):
             return redirect('paper-index')
         else:
             error_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
+    else:
+        form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
 
 class RollingPaperList(LoginRequiredMixin, ListView):
@@ -47,6 +48,10 @@ class RollingPaperDetail(LoginRequiredMixin, DetailView):
     model = RollingPaper
     template_name = 'papers/detail.html'
 
+    def get_queryset(self):
+        return RollingPaper.objects.filter(user=self.request.user)
+
+
 class RollingPaperCreate(LoginRequiredMixin, CreateView):
     model = RollingPaper
     fields = ['name', 'size', 'material', 'flavor', 'rating', 'brand']
@@ -61,12 +66,19 @@ class RollingPaperUpdate(LoginRequiredMixin, UpdateView):
     fields = ['size', 'material', 'flavor', 'rating', 'brand']
     template_name = 'papers/rollingpaper_form.html'
 
+    def get_queryset(self):
+        return RollingPaper.objects.filter(user=self.request.user)
+
 class RollingPaperDelete(LoginRequiredMixin, DeleteView):
     model = RollingPaper
     success_url = reverse_lazy('paper-index')
     template_name = 'papers/rollingpaper_confirm_delete.html'
 
-class BrandDetail(LoginRequiredMixin, DeleteView):
+    def get_queryset(self):
+        return RollingPaper.objects.filter(user=self.request.user)
+
+
+class BrandDetail(LoginRequiredMixin, DetailView):
     model = Brand
     template_name = 'brands/detail.html'
     context_object_name = 'brand'
