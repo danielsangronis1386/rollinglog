@@ -15,7 +15,14 @@
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'paper-index' %}">All Papers</a></li>
                     <li><a href="{% url 'paper-create' %}">Add Paper</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background: none;border:none;color:inherit;cursor:pointer;">
+                                Log Out
+                            </button>
+                        </form>
+                    </li>
                     <li>Welcome, {{ user.name }}</li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Log In</a></li>

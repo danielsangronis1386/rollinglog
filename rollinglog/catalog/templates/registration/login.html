@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="login-page">
+    <h1>Log In</h1>
+
+    {% if form.errors %}
+        <p class="error">Invalid username or password.Try again.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+    <p>Don't have an account yet? <a href="#">(Signup coming soon)</a></p>
+</section>
+{% endblock %}
