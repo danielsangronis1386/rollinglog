@@ -4,7 +4,6 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.views.generic import DetailView
-from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import RollingPaper
@@ -79,7 +78,7 @@ class RollingPaperDelete(LoginRequiredMixin, DeleteView):
 
 class BrandList(LoginRequiredMixin, ListView):
     model = Brand
-    template_name = 'brand/index.html'
+    template_name = 'brands/index.html'
     context_object_name = 'brand'
 
 
@@ -97,11 +96,16 @@ class BrandCreate(LoginRequiredMixin, CreateView):
     model = Brand
     fields = ['name', 'origin_country', 'description']
     template_name = 'brands/brand_form.html'
+    success_url = reverse_lazy('brand-index')
+
+    
 
 class BrandUpdate(LoginRequiredMixin, UpdateView):
     model = Brand
-    ffields = ['name', 'origin_country', 'description']
+    fields = ['name', 'origin_country', 'description']
     template_name = 'brands/brand_form.html'
+    success_url = reverse_lazy('brand-index')
+
 
 class BrandDelete(LoginRequiredMixin, DeleteView):
     model = Brand

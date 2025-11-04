@@ -18,5 +18,11 @@
     {% else %}
         <p>No papers listed fot this brand yet.</p>
     {% endif %}
+
+      <div class="actions">
+        <a href="{% url 'brand-update' brand.id %}">Edit</a> |
+        <a href="{% url 'brand-delete' brand.id %}">Delete</a> |
+        <a href="{% url 'brand-index' %}">Back to All Brands</a>
+    </div>
 </section>
 {% endblock %}

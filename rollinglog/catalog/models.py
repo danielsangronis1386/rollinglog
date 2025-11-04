@@ -21,6 +21,7 @@ class RollingPaper(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='paper_images/', blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('paper-detail', kwargs={'pk': self.id})
