@@ -46,11 +46,12 @@ body::before {
 /* NAVBAR */
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 18px 64px;
   background: #fff;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+  gap:80px;
 }
 
 nav h1 a {
@@ -155,4 +156,15 @@ footer {
   border-top: 1px solid rgba(0,0,0,0.05);
 }
 
+.site-logo {
+  text-align: left !important;
+  margin: 0;
+}
+
+.site-logo a {
+  color: #6b2fb4;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 2.2rem;
+}
 

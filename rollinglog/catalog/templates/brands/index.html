@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/brands/index.css' %}">
+
 <h1>All Brands</h1>
+<section class="brand-list">
 <ul>
     {% for brand in object_list %}
         <li><a href="{% url 'brand-detail' brand.id %}">{{ brand.name }}</a></li>
@@ -8,4 +12,5 @@
         <p>No brands yet. Add one!</p>
     {% endfor %}
 </ul>
+</section>
 {% endblock %}
