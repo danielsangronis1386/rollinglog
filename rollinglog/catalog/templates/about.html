@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RollingLog</title>
-</head>
-<body>
-    <h1>About RollingLog</h1>
-    <p>Your personal catalog of rolling paper, brands and  accesorires</p>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="about">
+  <h1>About RollingLog</h1>
+  <p>Your personal catalog of rolling papers, brands, and accessories — created for those who appreciate design, simplicity, and ritual.</p>
+</section>
+{% endblock %}

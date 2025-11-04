@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
+
+{% endblock %}
+
 {% block content %}
-    <h2>Welcome to RollingLog</h2>
-    <p>Your personal catalog of rolling papers.</p>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Track, Organize, and Discover</h1>
+    <p>Explore your personal catalog of rolling papers — simple, natural, and designed for connoisseurs.</p>
+    <div class="hero-buttons">
+      <a href="{% url 'signup' %}">Sign Up Free</a>
+      <a href="{% url 'paper-index' %}">Explore Demo</a>
+    </div>
+  </div>
+
+</section>
 {% endblock %}

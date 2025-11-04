@@ -1,0 +1,40 @@
+@import url('../base/base.css');
+
+
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+  padding: 140px 60px;
+  background: linear-gradient(180deg, #f7f8f5 0%, #ecf2ea 100%);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+/* Watermark background */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("{% static 'images/pexels-maksgelatin-4758954.jpg' %}") center/cover no-repeat;
+
+  opacity: 1;
+  filter: none;
+  z-index: 0;
+}
+
+/* keep text above */
+.hero-text, .hero-buttons {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove old image box logic */
+.hero-image {
+  display: none;
+}
