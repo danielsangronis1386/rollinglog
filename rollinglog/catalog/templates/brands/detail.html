@@ -5,7 +5,7 @@
     <p><strong>Origin:</strong> {{ brand.origin_country }}</p>
     <p>{{ brand.description }}</p>
 
-    <h2>Rolling Papers</h2>
+    <h2>Rolling Papers from this Brand</h2>
     {% if brand.rollingpaper_set.all %}
         <ul>
           {% for paper in brand.rollingpaper_set.all %}

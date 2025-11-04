@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>All Brands</h1>
+<ul>
+    {% for brand in object_list %}
+        <li><a href="{% url 'brand-detail' brand.id %}">{{ brand.name }}</a></li>
+    {% empty %}
+        <p>No brands yet. Add one!</p>
+    {% endfor %}
+</ul>
+{% endblock %}
