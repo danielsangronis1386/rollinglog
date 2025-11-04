@@ -77,11 +77,21 @@ class RollingPaperDelete(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         return RollingPaper.objects.filter(user=self.request.user)
 
+class BrandList(LoginRequiredMixin, ListView):
+    model = Brand
+    template_name = 'brand/index.html'
+    context_object_name = 'brand'
+
 
 class BrandDetail(LoginRequiredMixin, DetailView):
     model = Brand
     template_name = 'brands/detail.html'
     context_object_name = 'brand'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['papers'] = RollingPaper.objects.filter(brand=self.object)
+        return context
 
 @login_required
 def add_review(request, paper_id):
