@@ -19,9 +19,13 @@ class RollingPaper(models.Model):
     flavor = models.CharField(max_length=100, blank= True)
     rating = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('paper-detail', kwargs={'pk': self.id})
+    
+    
     
 class Review(models.Model):
     paper = models.ForeignKey(RollingPaper, on_delete=models.CASCADE, related_name='reviews')
@@ -34,10 +38,9 @@ class Review(models.Model):
         return f"Review by {self.user.username} for {self.paper.name}"
 
 
-    #Relatioships 
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    
+    
 
     def __str__(self):
         return self.name

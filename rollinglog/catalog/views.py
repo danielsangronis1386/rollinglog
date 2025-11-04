@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from .models import RollingPaper
 from .models import Brand
+from .models import Review
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -47,6 +49,19 @@ class BrandDetail(DeleteView):
     model = Brand
     template_name = 'brands/detail.html'
     context_object_name = 'brand'
+
+def add_review(request, paper_id):
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        rating = request.POST.get('rating')
+        paper = RollingPaper.objects.get(id=paper_id)
+        Review.objects.create(
+            comment=comment,
+            rating=rating,
+            paper=paper,
+            user=request.user
+        )
+    return redirect('paper-detail', pk=paper_id)
 
 
 

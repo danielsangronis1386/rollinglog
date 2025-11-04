@@ -10,4 +10,5 @@ urlpatterns = [
     path('papers/<int:pk>/update/', views.RollingPaperUpdate.as_view(), name='paper-update'),
     path('papers/<int:pk>/delete/', views.RollingPaperDelete.as_view(), name='paper-delete'),
     path('brands/<int:pk>/', views.BrandDetail.as_view(), name='brand-detail'),
+    path('papers/<int:paper_id>/add_review/', views.add_review, name='add-review'),
 ]
