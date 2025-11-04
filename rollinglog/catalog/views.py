@@ -92,6 +92,22 @@ class BrandDetail(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['papers'] = RollingPaper.objects.filter(brand=self.object)
         return context
+ 
+class BrandCreate(LoginRequiredMixin, CreateView):
+    model = Brand
+    fields = ['name', 'origin_country', 'description']
+    template_name = 'brands/brand_form.html'
+
+class BrandUpdate(LoginRequiredMixin, UpdateView):
+    model = Brand
+    ffields = ['name', 'origin_country', 'description']
+    template_name = 'brands/brand_form.html'
+
+class BrandDelete(LoginRequiredMixin, DeleteView):
+    model = Brand
+    success_url = reverse_lazy('brand-index')
+    template_name = 'brands/brand_confirm_delete.html'
+
 
 @login_required
 def add_review(request, paper_id):
