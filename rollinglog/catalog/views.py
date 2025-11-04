@@ -11,6 +11,8 @@ from .models import RollingPaper
 from .models import Brand
 from .models import Review
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class Home(LoginView):
@@ -32,17 +34,20 @@ def signup(request):
     form = UserCreationForm()
     return render(request, 'signup.html', {'form': form, 'error_message': error_message})
 
-class RollingPaperList(ListView):
+class RollingPaperList(LoginRequiredMixin, ListView):
     model = RollingPaper
     template_name = 'papers/index.html'
 
+    def get_queryset(self):
+        return RollingPaper.objects.filter(user=self.request.user)
 
-class RollingPaperDetail(DetailView):
+
+class RollingPaperDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'paper'
     model = RollingPaper
     template_name = 'papers/detail.html'
 
-class RollingPaperCreate(CreateView):
+class RollingPaperCreate(LoginRequiredMixin, CreateView):
     model = RollingPaper
     fields = ['name', 'size', 'material', 'flavor', 'rating', 'brand']
     template_name = 'papers/rollingpaper_form.html'
@@ -51,21 +56,22 @@ class RollingPaperCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class RollingPaperUpdate(UpdateView):
+class RollingPaperUpdate(LoginRequiredMixin, UpdateView):
     model = RollingPaper
     fields = ['size', 'material', 'flavor', 'rating', 'brand']
     template_name = 'papers/rollingpaper_form.html'
 
-class RollingPaperDelete(DeleteView):
+class RollingPaperDelete(LoginRequiredMixin, DeleteView):
     model = RollingPaper
     success_url = reverse_lazy('paper-index')
     template_name = 'papers/rollingpaper_confirm_delete.html'
 
-class BrandDetail(DeleteView):
+class BrandDetail(LoginRequiredMixin, DeleteView):
     model = Brand
     template_name = 'brands/detail.html'
     context_object_name = 'brand'
 
+@login_required
 def add_review(request, paper_id):
     if request.method == 'POST':
         comment = request.POST.get('comment')
