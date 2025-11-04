@@ -10,7 +10,7 @@
     {% endif %}
 </section>
 
-<form action="" method="post" class="form-container">
+<form action="" method="post" enctype="multipart/form-data" class="form-container">
     {% csrf_token %}
     <table>
         {{ form.as_table }}

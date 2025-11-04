@@ -10,6 +10,11 @@
     {% for paper in object_list %}
        <a href="{% url 'paper-detail' paper.id %}">
             <div class="card">
+                {% if paper.image %}
+                    <img src="{{ paper.image.url }}" alt="{{ paper.name }}">
+                {% else %}
+                    <img src="{% static 'images/paper-placeholder.png' %}" alt="No image">
+                {% endif %}
                 <div class="card-content">
                     <h2 class="card-title">{{ paper.name }}</h2>
                     <p><strong>Brand:</strong> {{ paper.brand.name }}</p>

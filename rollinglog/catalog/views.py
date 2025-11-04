@@ -53,7 +53,7 @@ class RollingPaperDetail(LoginRequiredMixin, DetailView):
 
 class RollingPaperCreate(LoginRequiredMixin, CreateView):
     model = RollingPaper
-    fields = ['name', 'size', 'material', 'flavor', 'rating', 'brand']
+    fields = ['name', 'size', 'material', 'flavor', 'rating', 'brand', 'image']
     template_name = 'papers/rollingpaper_form.html'
 
     def form_valid(self, form):
@@ -62,7 +62,7 @@ class RollingPaperCreate(LoginRequiredMixin, CreateView):
 
 class RollingPaperUpdate(LoginRequiredMixin, UpdateView):
     model = RollingPaper
-    fields = ['size', 'material', 'flavor', 'rating', 'brand']
+    fields = ['size', 'material', 'flavor', 'rating', 'brand', 'image']
     template_name = 'papers/rollingpaper_form.html'
 
     def get_queryset(self):

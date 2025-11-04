@@ -2,6 +2,11 @@
 {% block content %}
 <section class="paper-detail">
     <h1>{{ paper.name }}</h1>
+
+    {% if paper.image %}
+        <img src="{{ paper.image.url }}" alt="{{ paper.name }}" class="paper-image">
+    {% endif %}
+    
     <p><strong>Brand:</strong> {{ paper.brand.name }}</p>
     <p><strong>Size:</strong> {{ paper.size }}</p>
     <p><strong>Material:</strong> {{ paper.material }}</p>
