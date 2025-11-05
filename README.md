@@ -3,7 +3,7 @@
 **RollingLog** is a Django-based CRUD web application where users can catalog and review their favorite rolling papers.  
 Each user can create, view, update, and delete entries for rolling paper brands and individual papers, including details such as size, material, flavor, and personal ratings.
 
-![RollingLog Screenshot](static/images/rollinglog_logo.png)  
+![RollingLog Screenshot](static/images/Screenshot 2025-11-04 at 6.41.11 PM.png)  
 *(Replace with an actual screenshot of your deployed site once available.)*
 
 ---
