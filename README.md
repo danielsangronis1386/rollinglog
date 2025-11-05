@@ -105,9 +105,8 @@ python manage.py runserver
 
 ## Planning Materials
 
-- **Trello Board (User Stories and Planning):** [[Add your public Trello link here](https://trello.com/b/N0XUXEQl/rollinglog-your-personal-catalog-of-rolling-papers)]  
-- **Wireframes:** [Add link or upload screenshot here]  
-- **ERD:** [Add link or image of your ERD here]
+- **Trello Board (User Stories and Planning):** [ Trello link here](https://trello.com/b/N0XUXEQl/rollinglog-your-personal-catalog-of-rolling-papers)]  
+-
 
 Each MVP user story follows the GA format:  
 > As a [user role], I want [feature], so that [reason].
