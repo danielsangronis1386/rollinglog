@@ -1,0 +1,71 @@
+@import url('../base/base.css');
+
+.brand-detail {
+  text-align: center;
+  padding: 80px 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Brand name (same font and weight as paper titles) */
+.brand-detail h1 {
+  font-size: 2.8rem;
+  color: #010000;
+  margin-bottom: 20px;
+}
+
+/* Brand info */
+.brand-detail p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* Section for “Rolling Papers from this Brand” */
+.brand-detail h2 {
+  margin-top: 60px;
+  font-size: 1.6rem;
+  color: var(--color-green);
+  font-weight: 700;
+}
+
+/* Paper list */
+.brand-detail ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.brand-detail ul li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.brand-detail ul li a {
+  color: purple;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.brand-detail ul li a:hover {
+  color: var(--color-green);
+}
+
+/* Action links */
+.actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1rem;
+}
+
+.actions a {
+  text-decoration: none;
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+.actions a:hover {
+  text-decoration: underline;
+}

@@ -10,7 +10,13 @@
 </head>
 <body>
     <header>
-        <h1 class="site-logo"><a href="{% url 'home' %}">RollingLog</a></h1>
+        <h1 class="logo">
+            <a href="{% url 'home' %}">
+                 <img src="{% static 'images/rollinglog_logo.png' %}" alt="RollingLog Logo">
+
+            </a>
+        </h1>
+
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/brands/brand_confirm_delete.css' %}">
+
 <h1>Delete {{ object.name }}</h1>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Confirm Delete</button>
+        <button type="submit" class="btn">Confirm Delete</button>
 </form>
 <a href="{% url 'brand-index' %}">Cancel</a>
 {% endblock %}

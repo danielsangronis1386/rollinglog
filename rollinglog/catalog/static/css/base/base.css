@@ -168,3 +168,38 @@ footer {
   font-size: 2.2rem;
 }
 
+/* HEADER / LOGO FIX */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 64px;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+header .logo img {
+  width: 120px;   /* reduce o aumenta este valor según lo que necesites */
+  height: auto;
+  display: block;
+}
+
+header nav ul {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.25s ease;
+}
+
+header nav ul li a:hover {
+  color: var(--color-green);
+}
