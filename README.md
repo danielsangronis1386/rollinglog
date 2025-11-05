@@ -65,7 +65,7 @@ It includes authentication, dynamic data rendering, and relational models for **
 - **Frontend:** HTML, CSS (Flexbox-based)  
 - **Database:** SQLite3  
 - **Version Control:** Git & GitHub  
-- **Deployment:** *(Add deployment platform if applicable)*  
+- **Deployment:** *
 
 ---
 
