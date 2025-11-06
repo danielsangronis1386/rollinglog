@@ -99,7 +99,7 @@ python manage.py runserver
 ```
 
 ### 6. Visit the app
-[http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+[RollingLog](https://rollinglog-f1bc498d8658.herokuapp.com/))
 
 ---
 
