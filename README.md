@@ -99,7 +99,7 @@ python manage.py runserver
 ```
 
 ### 6. Visit the app
-[RollingLog](https://rollinglog-f1bc498d8658.herokuapp.com/))
+[RollingLog](https://rollinglog-f1bc498d8658.herokuapp.com/)
 
 ---
 
