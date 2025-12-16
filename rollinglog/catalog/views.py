@@ -6,9 +6,10 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import RollingPaper
+from .models import LogEntry
 from .models import Brand
 from .models import Review
+from .models import Product
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,25 +35,26 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
 
-class RollingPaperList(LoginRequiredMixin, ListView):
-    model = RollingPaper
+class LogEntryList(LoginRequiredMixin, ListView):
+    model = LogEntry
     template_name = 'papers/index.html'
+    context_object_name = 'papers' # Maintain compatibility if template uses 'papers' or 'object_list'
 
     def get_queryset(self):
-        return RollingPaper.objects.filter(user=self.request.user)
+        return LogEntry.objects.filter(user=self.request.user)
 
 
-class RollingPaperDetail(LoginRequiredMixin, DetailView):
+class LogEntryDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'paper'
-    model = RollingPaper
+    model = LogEntry
     template_name = 'papers/detail.html'
 
     def get_queryset(self):
-        return RollingPaper.objects.filter(user=self.request.user)
+        return LogEntry.objects.filter(user=self.request.user)
 
 
-class RollingPaperCreate(LoginRequiredMixin, CreateView):
-    model = RollingPaper
+class LogEntryCreate(LoginRequiredMixin, CreateView):
+    model = LogEntry
     fields = ['name', 'size', 'material', 'flavor', 'rating', 'brand', 'image']
     template_name = 'papers/rollingpaper_form.html'
 
@@ -60,21 +62,21 @@ class RollingPaperCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class RollingPaperUpdate(LoginRequiredMixin, UpdateView):
-    model = RollingPaper
+class LogEntryUpdate(LoginRequiredMixin, UpdateView):
+    model = LogEntry
     fields = ['size', 'material', 'flavor', 'rating', 'brand', 'image']
     template_name = 'papers/rollingpaper_form.html'
 
     def get_queryset(self):
-        return RollingPaper.objects.filter(user=self.request.user)
+        return LogEntry.objects.filter(user=self.request.user)
 
-class RollingPaperDelete(LoginRequiredMixin, DeleteView):
-    model = RollingPaper
+class LogEntryDelete(LoginRequiredMixin, DeleteView):
+    model = LogEntry
     success_url = reverse_lazy('paper-index')
     template_name = 'papers/rollingpaper_confirm_delete.html'
 
     def get_queryset(self):
-        return RollingPaper.objects.filter(user=self.request.user)
+        return LogEntry.objects.filter(user=self.request.user)
 
 class BrandList(LoginRequiredMixin, ListView):
     model = Brand
@@ -89,7 +91,7 @@ class BrandDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['papers'] = RollingPaper.objects.filter(brand=self.object)
+        context['papers'] = LogEntry.objects.filter(brand=self.object)
         return context
  
 class BrandCreate(LoginRequiredMixin, CreateView):
@@ -118,7 +120,7 @@ def add_review(request, paper_id):
     if request.method == 'POST':
         comment = request.POST.get('comment')
         rating = request.POST.get('rating')
-        paper = RollingPaper.objects.get(id=paper_id)
+        paper = LogEntry.objects.get(id=paper_id)
         Review.objects.create(
             comment=comment,
             rating=rating,
@@ -126,6 +128,21 @@ def add_review(request, paper_id):
             user=request.user
         )
     return redirect('paper-detail', pk=paper_id)
+
+from django.http import JsonResponse
+
+def product_list_api(request):
+    material = request.GET.get('material')
+    size = request.GET.get('size')
+    products = Product.objects.all()
+    
+    if material:
+        products = products.filter(material__icontains=material)
+    if size:
+        products = products.filter(size__icontains=size)
+        
+    data = list(products.values('id', 'name', 'brand__name', 'material', 'size', 'flavor', 'manufacturer_image'))
+    return JsonResponse({'products': data})
 
 
 
