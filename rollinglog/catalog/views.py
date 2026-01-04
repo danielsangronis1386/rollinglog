@@ -141,7 +141,7 @@ def product_list_api(request):
     if size:
         products = products.filter(size__icontains=size)
         
-    data = list(products.values('id', 'name', 'brand__name', 'material', 'size', 'flavor', 'manufacturer_image'))
+    data = list(products.values('id', 'name', 'brand__name', 'material', 'size', 'flavor', 'manufacturer_image_url'))
     return JsonResponse({'products': data})
 
 

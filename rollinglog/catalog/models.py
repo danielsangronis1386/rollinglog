@@ -22,7 +22,7 @@ class Product(models.Model):
     material = models.CharField(max_length=50) # e.g., Hemp, Rice, Wood Pulp
     size = models.CharField(max_length=50) # e.g., King Size, 1 1/4
     flavor = models.CharField(max_length=100, blank=True)
-    manufacturer_image = models.ImageField(upload_to='product_images/', blank=True, null=True)
+    manufacturer_image_url = models.URLField(max_length=500, blank=True, null=True, help_text="Cloudinary image URL")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

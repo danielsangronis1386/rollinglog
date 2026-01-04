@@ -15,6 +15,8 @@ import dj_database_url
 
 load_dotenv()
 
+# Configure Cloudinary
+from core import cloudinary_config
 
 from pathlib import Path
 
@@ -42,6 +44,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'catalog',
+    'core',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,26 +88,21 @@ WSGI_APPLICATION = 'rollinglog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-if 'ON_HEROKU' in os.environ:
+# Use DATABASE_URL on Heroku (PostgreSQL), SQLite locally
+if 'DATABASE_URL' in os.environ:
+    # Heroku provides DATABASE_URL automatically for PostgreSQL
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'rollinglog',
-            'USER': 'your_local_user',
-            'PASSWORD': 'your_local_password',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
 else:
+    # Local development uses SQLite (no setup required)
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'rollinglog',
-            'USER': 'your_local_user',
-            'PASSWORD': 'your_local_password',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 
