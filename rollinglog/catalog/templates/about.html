@@ -6,8 +6,52 @@
 {% endblock %}
 
 {% block content %}
-<section class="about">
-  <h1>About RollingLog</h1>
-  <p>Your personal catalog of rolling papers, brands, and accessories — created for those who appreciate design, simplicity, and ritual.</p>
+<style>
+  /* CRITICAL FIX: Override base.css main container constraints */
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Import about css if needed, but we will style the container here mainly */
+  @import url("{% static 'css/about/about.css' %}");
+</style>
+
+<div class="about-container" style="
+    min-height: 100vh; 
+    width: 100%; 
+    background: url('{% static "images/about_hero.png" %}') center/cover no-repeat; display: flex; align-items:
+  center; justify-content: center; position: relative; ">
+    <!-- Overlay for better text readability -->
+    <div style=" position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0;"></div>
+
+<section class="about" style="
+        position: relative; 
+        z-index: 1; 
+        background: rgba(255,255,255,0.95); 
+        padding: 4rem; 
+        border-radius: 20px; 
+        max-width: 800px; 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
+        text-align: center;
+    ">
+  <h1 style="
+        font-size: 3rem; 
+        margin-bottom: 2rem; 
+        background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      ">About RollingLog</h1>
+
+  <p style="
+        font-size: 1.4rem; 
+        line-height: 1.8; 
+        color: #555;
+      ">Your personal catalog of rolling papers, brands, and accessories — created for those who appreciate design,
+    simplicity, and ritual.</p>
 </section>
+</div>
 {% endblock %}

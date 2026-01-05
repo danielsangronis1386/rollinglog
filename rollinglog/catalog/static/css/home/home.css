@@ -10,14 +10,14 @@
   justify-content: center;
   text-align: center;
   gap: 40px;
-  padding: 140px 60px;
-  background: linear-gradient(180deg, #f7f8f5 0%, #ecf2ea 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  /* padding: 140px 60px; */
+  /* background: linear-gradient(180deg, #f7f8f5 0%, #ecf2ea 100%); */
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
   overflow: hidden;
 }
 
-/* Watermark background */
-.hero::before {
+/* Watermark background - Commented out to allow new background */
+/* .hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -26,7 +26,7 @@
   opacity: 1;
   filter: none;
   z-index: 0;
-}
+} */
 
 /* keep text above */
 .hero-text {
