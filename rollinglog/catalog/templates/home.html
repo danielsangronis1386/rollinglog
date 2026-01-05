@@ -1,20 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block head %}
-<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
-
-{% endblock %}
-
 {% block content %}
-<section class="hero">
-  <div class="hero-text">
-    <h1>Track, Organize, and Discover</h1>
-    <p>Explore your personal catalog of rolling papers — simple, natural, and designed for connoisseurs.</p>
-    <div class="hero-buttons">
-      <a href="{% url 'signup' %}">Sign Up Free</a>
-    </div>
-  </div>
+<style>
+  /* CRITICAL FIX: Override base.css main container constraints */
+  /* This allows the hero section to be full-width and properly centered */
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
 
+  /* Ensure home styles are loaded */
+  @import url("{% static 'css/home/home.css' %}");
+</style>
+
+<!-- Full Screen Background -->
+<section class="hero"
+  style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-image: url('https://res.cloudinary.com/dhqhqyexq/image/upload/v1767509274/rollinglog/homepage_background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 0;">
 </section>
+
+<!-- Main Flex Container - Forces True Centering -->
+<div
+  style="position: relative; z-index: 1; min-height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center;">
+
+  <!-- Translucent Content Box -->
+  <div class="hero-text"
+    style="color: white; text-align: center; padding: 3rem; background: rgba(0,0,0,0.5); border-radius: 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 800px; width: 90%; margin: 0 auto; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);">
+
+    <h1
+      style="color: #ffffff !important; font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); text-align: center; line-height: 1.2; font-weight: 700;">
+      Track, Organize, and Discover
+    </h1>
+
+    <p
+      style="color: #ffffff !important; font-size: 1.4rem; margin-bottom: 2.5rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.9); text-align: center; max-width: 600px; line-height: 1.5;">
+      Explore your personal catalog of rolling papers — simple, natural, and designed for connoisseurs.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="{% url 'signup' %}"
+        style="background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%); color: white; padding: 1rem 3rem; text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4); transition: all 0.3s ease; display: inline-block;">
+        Sign Up Free
+      </a>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
